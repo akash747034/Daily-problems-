@@ -1,0 +1,29 @@
+class Solution{
+  public:
+    int longestKSubstr(string s, int k) {
+    // your code here
+    map<char,int>m;
+    
+    int ans=-1;
+    int count=0;
+    int i=0,j=0;
+    
+    while(j<s.length()){
+        
+        m[s[j]]++;
+        
+      while(m.size()>k){
+            m[s[i]]--;
+            if(m[s[i]]==0){
+                m.erase(s[i]);
+            }
+            
+            i++;
+        }
+        
+        if(m.size()==k)
+        ans=max(ans,j-i+1);
+        j++;
+    }
+    
+   return ans;
